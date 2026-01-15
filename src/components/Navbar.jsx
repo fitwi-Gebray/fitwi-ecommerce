@@ -3,36 +3,32 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  IconButton,
-  Badge,
+  Button,
   Box,
+  IconButton,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function Navbar() {
-  const { cart } = useCart();
-
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
   return (
-    <AppBar position="sticky">
+    <AppBar position="static" color="primary">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography
-          component={Link}
-          to="/"
           variant="h6"
-          sx={{ textDecoration: "none", color: "inherit", fontWeight: 700 }}
+          component={Link} // <-- Link to home
+          to="/"
+          sx={{ textDecoration: "none", color: "inherit" }}
         >
-          MyStore
+          Fitwi Store
         </Typography>
 
         <Box>
-          <IconButton component={Link} to="/cart" color="inherit">
-            <Badge badgeContent={totalItems} color="error">
-              <ShoppingCartIcon />
-            </Badge>
+          <Button color="inherit" component={Link} to="/products">
+            Products
+          </Button>
+          <IconButton color="inherit" component={Link} to="/cart">
+            <ShoppingCartIcon />
           </IconButton>
         </Box>
       </Toolbar>
